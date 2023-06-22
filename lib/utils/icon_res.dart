@@ -7,4 +7,7 @@ class IconRes {
   static const settingIcon = Icons.settings;
   static const shareIcon = Icons.share;
   static const rateIcon = Icons.star;
+  static const moreIcon = Icons.more_vert;
+  static const menuIcon = Icons.menu;
+  static const clearIcon = Icons.clear;
 }

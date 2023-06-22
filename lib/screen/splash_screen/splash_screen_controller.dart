@@ -3,23 +3,30 @@ import 'dart:async';
 import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
 import 'package:mahabharat/screen/home_screen/home_screen.dart';
+import 'package:mahabharat/services/audio_service/audio_controller_screen.dart';
 
 class SplashScreenController extends GetxController
     with GetSingleTickerProviderStateMixin {
+  AudioController audioController = Get.put(AudioController());
+
+  ///-------------------------------AnimationController--------------------------------///
   late final AnimationController controller = AnimationController(
     duration: const Duration(
-      seconds: 10,
+      seconds: 6,
     ),
     vsync: this,
   )..repeat();
-
   final Tween<double> tween = Tween<double>(begin: 0, end: 1);
+
+  ///------------------------------------onInit--------------------------------------///
   @override
-  void onInit() {
+  Future<void> onInit() async {
     controller;
     tween;
-    Timer(const Duration(seconds: 10), () {
+    await audioController.titleMusic();
+    Timer(const Duration(seconds: 6), () {
       Get.off(() => const HomeScreen());
+      audioController.titleSong.stop();
     });
     super.onInit();
   }

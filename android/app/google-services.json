@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "822495739711",
+    "project_id": "mahabharat-be9d0",
+    "storage_bucket": "mahabharat-be9d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822495739711:android:7d87c8d74112ef46945d8a",
+        "android_client_info": {
+          "package_name": "com.example.mahabharat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822495739711-6av8n6dcsdueo5kivokmqbjgf0baon2c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdWX80_lbOWlpGnV5rLkLY7Wq32VY_i6M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "822495739711-6av8n6dcsdueo5kivokmqbjgf0baon2c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
