@@ -15,7 +15,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(HomeScreenController());
     Get.put(RateAppController());
-    return SafeArea(child: GetBuilder<HomeScreenController>(
+    return SafeArea(
+        child: GetBuilder<HomeScreenController>(
+      id: "user",
       builder: (controller) {
         return AdvancedDrawer(
           backdrop: Container(
@@ -26,7 +28,7 @@ class HomeScreen extends StatelessWidget {
                     image: AssetImage(AssetRes.bgImage), fit: BoxFit.fill)),
           ),
           controller: controller.advancedDrawerController,
-          animationCurve: Curves.easeInOut,
+          animationCurve: Curves.ease,
           animationDuration: const Duration(seconds: 1),
           animateChildDecoration: true,
           rtlOpening: false,

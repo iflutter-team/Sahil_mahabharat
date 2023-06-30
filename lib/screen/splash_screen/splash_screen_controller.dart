@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
-import 'package:mahabharat/screen/home_screen/home_screen.dart';
 import 'package:mahabharat/services/audio_service/audio_controller_screen.dart';
+
+import '../home_screen/home_screen.dart';
 
 class SplashScreenController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -12,7 +13,7 @@ class SplashScreenController extends GetxController
   ///-------------------------------AnimationController--------------------------------///
   late final AnimationController controller = AnimationController(
     duration: const Duration(
-      seconds: 6,
+      seconds: 5,
     ),
     vsync: this,
   )..repeat();

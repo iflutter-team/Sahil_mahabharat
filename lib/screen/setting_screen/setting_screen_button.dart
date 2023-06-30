@@ -4,6 +4,8 @@ import 'package:mahabharat/common_file/home_screen_common/listTile_divider_commo
 import 'package:mahabharat/screen/home_screen/home_screen_controller.dart';
 import 'package:mahabharat/screen/setting_screen/setting_screen_controller.dart';
 import 'package:mahabharat/services/rate_app_service/rate_app.dart';
+import 'package:mahabharat/utils/color_res.dart';
+import 'package:mahabharat/utils/icon_res.dart';
 import 'package:mahabharat/utils/string_res.dart';
 
 Widget resetSetting() {
@@ -48,9 +50,10 @@ Widget music() {
             controller.offMusic = !controller.offMusic;
             controller.sound();
           },
-          icon: Icon(controller.offMusic
-              ? Icons.check_box
-              : Icons.check_box_outline_blank));
+          icon: Icon(
+            controller.offMusic ? IconRes.boxIcon : IconRes.checkBox,
+            color: ColorRes.orangeColor,
+          ));
     },
   );
 }

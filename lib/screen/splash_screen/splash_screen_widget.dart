@@ -12,29 +12,32 @@ Widget splashScreenBody() {
         image: DecorationImage(
             image: AssetImage(AssetRes.bgImage), fit: BoxFit.cover)),
     child: Padding(
-      padding: EdgeInsets.only(top: Get.height * 0.25),
+      padding: EdgeInsets.only(top: Get.height * 0.20),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            height: Get.height * 0.20,
-            width: Get.width * 0.50,
+            height: Get.height * 0.24,
+            width: Get.width * 0.60,
             decoration: BoxDecoration(
                 boxShadow: const [
-                  BoxShadow(color: ColorRes.whiteColor, blurRadius: 5)
+                  BoxShadow(color: ColorRes.blackColor, blurRadius: 0.1)
                 ],
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                border: Border.all(color: ColorRes.orangeAssentColor, width: 7),
+                borderRadius:
+                    BorderRadius.all(Radius.circular(Get.height * 0.025)),
+                border: Border.all(color: ColorRes.orangeAssentColor, width: 5),
                 image: const DecorationImage(
                     image: AssetImage(AssetRes.splashImage),
+                    filterQuality: FilterQuality.high,
                     fit: BoxFit.cover)),
           ),
-          Image.asset(AssetRes.splashTextImage, scale: 1.5),
+          SizedBox(height: Get.height * 0.020),
+          Image.asset(AssetRes.splashTextImage),
           const Spacer(),
-          Center(
-              child: Padding(
+          Padding(
             padding: EdgeInsets.only(bottom: Get.height * 0.10),
             child: wheel(),
-          )),
+          ),
         ],
       ),
     ),
@@ -48,11 +51,9 @@ Widget wheel() {
     builder: (controller) {
       return RotationTransition(
         turns: controller.tween.animate(controller.controller),
-        child: SizedBox(
-          height: Get.height * 0.090,
-          child: Image.asset(
-            AssetRes.rathWheel,
-          ),
+        child: Image.asset(
+          AssetRes.rathWheel,
+          scale: Get.height * 0.0070,
         ),
       );
     },

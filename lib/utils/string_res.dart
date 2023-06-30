@@ -1,5 +1,7 @@
 class StringRes {
   static const mahabharatText = "महाभारत";
+
+  ///------------------------------------------drawer--------------------------------------------///
   static const videoText = "Video";
   static const shareText = "Share This App";
   static const rateText = "Rate This App";
@@ -7,6 +9,11 @@ class StringRes {
   static const storyText = "Story";
   static const personText = "Characters";
   static const moreAppText = "More App";
+
+  ///-------------------------------------------- Character---------------------------------------///
+  static const characterText = "Character";
+
+  ///------------------------------------setting----------------------------------------------///
   static const applicationText = "Application";
   static const playSong = "Play Title Song";
   static const playSubTitle =

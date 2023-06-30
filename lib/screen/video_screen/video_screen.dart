@@ -1,15 +1,15 @@
+import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mahabharat/screen/video_screen/video_controller.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:mahabharat/utils/asset_res.dart';
+import 'package:mahabharat/utils/color_res.dart';
 
 class VideoScreen extends StatelessWidget {
   final String data;
   const VideoScreen({super.key, required this.data});
-
   @override
   Widget build(BuildContext context) {
-    print(data);
     Get.put(VideoController(data));
     return WillPopScope(
       onWillPop: () async {
@@ -28,15 +28,28 @@ class VideoScreen extends StatelessWidget {
                     ? const Center(
                         child: CircularProgressIndicator(),
                       )
-                    : YoutubePlayerBuilder(
-                        player: YoutubePlayer(
-                          controller: controller.controller,
+                    : Container(
+                        height: Get.height,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage(AssetRes.bgImage),
+                                fit: BoxFit.fill)),
+                        child: Column(
+                          children: [
+                            FlickVideoPlayer(
+                                flickManager: controller.flickManager),
+                            Expanded(
+                              child: Container(
+                                height: Get.height,
+                                width: Get.width,
+                                color:
+                                    ColorRes.transparentColor.withOpacity(0.5),
+                                child: const Text("mahabharat"),
+                              ),
+                            )
+                          ],
                         ),
-                        builder: (context, player) => Column(
-                              children: [
-                                player,
-                              ],
-                            ));
+                      );
               },
             ),
           ],

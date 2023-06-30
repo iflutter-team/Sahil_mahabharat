@@ -2,13 +2,14 @@ import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
+import 'package:mahabharat/common_file/home_screen_common/listTile_divider_common.dart';
 import 'package:mahabharat/screen/home_screen/home_screen_controller.dart';
-import 'package:mahabharat/screen/home_screen/video_data.dart';
 import 'package:mahabharat/utils/asset_res.dart';
 import 'package:mahabharat/utils/color_res.dart';
 import 'package:mahabharat/utils/icon_res.dart';
 import 'package:mahabharat/utils/string_res.dart';
 
+///-----------------------------------------------AppBar-----------------------------------///
 AppBar homeScreenAppBar = AppBar(
   leading: GetBuilder<HomeScreenController>(
     builder: (controller) {
@@ -52,79 +53,94 @@ AppBar homeScreenAppBar = AppBar(
             icon: const Icon(IconRes.shareIcon));
       },
     ),
-    const SizedBox(width: 15)
+    horizontalSize(Get.width * 0.015)
   ],
 );
 
 ///-------------------------------------------Home Screen Body Part----------------------------------------///
 Widget homeScreenBody() {
   return Container(
-    height: Get.height,
-    width: Get.width,
-    decoration: const BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage(AssetRes.bgImage), fit: BoxFit.cover)),
-    child: ListView.builder(
-      itemCount: VideoData.data.length,
-      itemBuilder: (context, index) {
-        return GetBuilder<HomeScreenController>(
-          builder: (controller) {
-            return GestureDetector(
-              onTap: () {
-                controller.watchVideo(index);
-              },
-              child: Card(
-                shape: OutlineInputBorder(
-                  borderSide: const BorderSide(color: ColorRes.whiteColor),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(Get.height * 0.010),
-                  ),
-                ),
-                elevation: 20,
-                color: ColorRes.transparentColor.withOpacity(0.1),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: Get.height * 0.18,
-                      width: Get.width * 0.45,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(Get.height * 0.010),
-                          topLeft: Radius.circular(Get.height * 0.010),
-                        ),
-                        image: DecorationImage(
-                          image: NetworkImage(
-                            VideoData.data[index]["image"],
-                          ),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        height: Get.height * 0.18,
-                        color: ColorRes.black54Color,
-                        child: Padding(
-                          padding:
-                              const EdgeInsets.only(left: 5, top: 7, right: 5),
-                          child: Text(
-                            VideoData.data[index]["description"],
-                            style: const TextStyle(
-                                color: ColorRes.whiteColor,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
+      height: Get.height,
+      width: Get.width,
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(AssetRes.bgImage), fit: BoxFit.cover)),
+      child: GetBuilder<HomeScreenController>(
+        id: "listView",
+        builder: (controller) {
+          return controller.userVideo == null
+              ? Center(
+                  child: CircularProgressIndicator(color: ColorRes.whiteColor))
+              : ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: controller.userVideo!.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        controller.watchVideo(index);
+                      },
+                      child: Card(
+                        shape: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.white70),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(Get.height * 0.010),
                           ),
                         ),
+                        elevation: 20,
+                        color: ColorRes.transparentColor.withOpacity(0.1),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ///----------------------------------------------------------thumlain----------------------------------------------------------------///
+                            Container(
+                              height: Get.height * 0.16,
+                              width: Get.width * 0.48,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft:
+                                      Radius.circular(Get.height * 0.010),
+                                  topLeft: Radius.circular(Get.height * 0.010),
+                                ),
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                      controller.userVideo![index].imageurl!),
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+
+                            ///-----------------------------------------------------title-------------------------------------------------------------------------///
+                            Expanded(
+                              child: Container(
+                                height: Get.height * 0.16,
+                                decoration: BoxDecoration(
+                                    color: ColorRes.black54Color,
+                                    borderRadius: BorderRadius.only(
+                                        topRight:
+                                            Radius.circular(Get.height * 0.01),
+                                        bottomRight: Radius.circular(
+                                            Get.height * 0.01))),
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: Get.width * 0.02,
+                                      top: Get.height * 0.0075,
+                                      right: Get.width * 0.009),
+                                  child: Text(
+                                    controller.userVideo![index].title!,
+                                    style: TextStyle(
+                                        color: ColorRes.whiteColor,
+                                        fontSize: Get.height * 0.021,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                    )
-                  ],
-                ),
-              ),
-            );
-          },
-        );
-      },
-    ),
-  );
+                    );
+                  },
+                );
+        },
+      ));
 }

@@ -39,7 +39,7 @@ Widget drawerHomePage() {
               dividerCommon(),
               listTileCommon(IconRes.storyIcon, StringRes.storyText),
               dividerCommon(),
-              listTileCommon(IconRes.personIcon, StringRes.personText),
+              characterButton(),
               dividerCommon(),
               settingButton(),
               dividerCommon(),

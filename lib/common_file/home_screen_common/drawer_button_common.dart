@@ -66,3 +66,14 @@ Widget moreApp() {
     },
   );
 }
+
+Widget characterButton() {
+  return GetBuilder<HomeScreenController>(
+    builder: (controller) {
+      return GestureDetector(
+        onTap: () => controller.charactersButton(),
+        child: listTileCommon(IconRes.personIcon, StringRes.personText),
+      );
+    },
+  );
+}
