@@ -7,24 +7,24 @@ class FireBaseService {
   static Future<List<UserVideo>?> getVideo(String key) async {
     List<UserVideo> userVideo = [];
 
-    String fullKey = "";
-    for (int i = 1; i <= 94; i++) {
-      if (i <= 9) {
-        fullKey = 'ep0$i';
-      } else {
-        fullKey = 'ep$i';
-      }
-
-      DatabaseReference reference = database.ref(key).child(fullKey);
-      await reference.get().then(
-        (value) {
-          Map data = value.value as Map;
-
-          UserVideo vid = UserVideo.fromJson(data);
+    DatabaseReference reference = database.ref(key);
+    await reference.get().then(
+      (value) {
+        Map data = value.value as Map;
+        print(data);
+        data.forEach((key, value) {
+          int id = int.parse(key.toString().substring(2));
+          value["id"] = id;
+          UserVideo vid = UserVideo.fromJson(value);
           userVideo.add(vid);
-        },
-      );
-    }
+        });
+        print(userVideo.first.id);
+        userVideo.sort(
+          (a, b) => a.id.compareTo(b.id),
+        );
+        print(userVideo.first.id);
+      },
+    );
     if (userVideo.isNotEmpty) {
       return userVideo;
     } else {
@@ -32,3 +32,12 @@ class FireBaseService {
     }
   }
 }
+
+// String fullKey = "";
+// for (int i = 1; i <= 94; i++) {
+//   if (i <= 9) {
+//     fullKey = 'ep0$i';
+//   } else {
+//     fullKey = 'ep$i';
+//   }
+// }

@@ -1,4 +1,5 @@
 import 'package:bordered_text/bordered_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
@@ -65,82 +66,98 @@ Widget homeScreenBody() {
       decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(AssetRes.bgImage), fit: BoxFit.cover)),
-      child: GetBuilder<HomeScreenController>(
-        id: "listView",
-        builder: (controller) {
-          return controller.userVideo == null
-              ? Center(
-                  child: CircularProgressIndicator(color: ColorRes.whiteColor))
-              : ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: controller.userVideo!.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        controller.watchVideo(index);
-                      },
-                      child: Card(
-                        shape: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.white70),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(Get.height * 0.010),
-                          ),
-                        ),
-                        elevation: 20,
-                        color: ColorRes.transparentColor.withOpacity(0.1),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ///----------------------------------------------------------thumlain----------------------------------------------------------------///
-                            Container(
-                              height: Get.height * 0.16,
-                              width: Get.width * 0.48,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft:
-                                      Radius.circular(Get.height * 0.010),
-                                  topLeft: Radius.circular(Get.height * 0.010),
-                                ),
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                      controller.userVideo![index].imageurl!),
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
+      child: Container(
+        color: ColorRes.transparentColor.withOpacity(0.5),
+        child: GetBuilder<HomeScreenController>(
+          id: "listView",
+          builder: (controller) {
+            return controller.userVideo == null
+                ? const Center(
+                    child:
+                        CircularProgressIndicator(color: ColorRes.whiteColor))
+                : ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: controller.userVideo!.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          controller.watchVideo(index);
+                        },
+                        child: Card(
+                          margin: EdgeInsets.only(
+                              top: Get.height * 0.015,
+                              left: Get.width * 0.030,
+                              right: Get.width * 0.030),
+                          shape: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.white70),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(Get.height * 0.015),
                             ),
-
-                            ///-----------------------------------------------------title-------------------------------------------------------------------------///
-                            Expanded(
-                              child: Container(
-                                height: Get.height * 0.16,
-                                decoration: BoxDecoration(
-                                    color: ColorRes.black54Color,
+                          ),
+                          elevation: 20,
+                          color: ColorRes.transparentColor.withOpacity(0.1),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ///----------------------------------------------------------thumlain----------------------------------------------------------------///
+                              CachedNetworkImage(
+                                imageUrl:
+                                    controller.userVideo![index].imageurl!,
+                                imageBuilder: (context, imageProvider) =>
+                                    Container(
+                                  height: Get.height * 0.16,
+                                  width: Get.width * 0.48,
+                                  decoration: BoxDecoration(
                                     borderRadius: BorderRadius.only(
-                                        topRight:
-                                            Radius.circular(Get.height * 0.01),
-                                        bottomRight: Radius.circular(
-                                            Get.height * 0.01))),
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                      left: Get.width * 0.02,
-                                      top: Get.height * 0.0075,
-                                      right: Get.width * 0.009),
-                                  child: Text(
-                                    controller.userVideo![index].title!,
-                                    style: TextStyle(
-                                        color: ColorRes.whiteColor,
-                                        fontSize: Get.height * 0.021,
-                                        fontWeight: FontWeight.bold),
+                                      bottomLeft:
+                                          Radius.circular(Get.height * 0.015),
+                                      topLeft:
+                                          Radius.circular(Get.height * 0.015),
+                                    ),
+                                    image: DecorationImage(
+                                        image: imageProvider, fit: BoxFit.fill),
                                   ),
                                 ),
+                                placeholder: (context, url) => const Center(
+                                    child: CircularProgressIndicator(
+                                        color: ColorRes.whiteColor)),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
                               ),
-                            )
-                          ],
+
+                              ///-----------------------------------------------------title-------------------------------------------------------------------------///
+                              Expanded(
+                                child: Container(
+                                  height: Get.height * 0.16,
+                                  decoration: BoxDecoration(
+                                      color: ColorRes.black54Color,
+                                      borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(
+                                              Get.height * 0.015),
+                                          bottomRight: Radius.circular(
+                                              Get.height * 0.015))),
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        left: Get.width * 0.02,
+                                        top: Get.height * 0.0075,
+                                        right: Get.width * 0.009),
+                                    child: Text(
+                                      controller.userVideo![index].title!,
+                                      style: TextStyle(
+                                          color: ColorRes.whiteColor,
+                                          fontSize: Get.height * 0.021,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                );
-        },
+                      );
+                    },
+                  );
+          },
+        ),
       ));
 }

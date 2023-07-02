@@ -8,6 +8,8 @@ import 'package:mahabharat/utils/color_res.dart';
 class VideoScreen extends StatelessWidget {
   final String data;
   const VideoScreen({super.key, required this.data});
+  // HomeScreenController homeScreenController = Get.find<HomeScreenController>();
+
   @override
   Widget build(BuildContext context) {
     Get.put(VideoController(data));
@@ -36,8 +38,12 @@ class VideoScreen extends StatelessWidget {
                                 fit: BoxFit.fill)),
                         child: Column(
                           children: [
-                            FlickVideoPlayer(
-                                flickManager: controller.flickManager),
+                            SizedBox(
+                              width: Get.width,
+                              height: Get.height * 0.25,
+                              child: FlickVideoPlayer(
+                                  flickManager: controller.flickManager),
+                            ),
                             Expanded(
                               child: Container(
                                 height: Get.height,
