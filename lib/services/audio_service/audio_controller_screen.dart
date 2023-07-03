@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:mahabharat/services/audio_service/audio_res.dart';
+import 'package:mahabharat/services/service_utils/audio_res.dart';
 
 class AudioController extends GetxController {
 

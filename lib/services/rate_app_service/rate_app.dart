@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:mahabharat/services/url_res.dart';
+import 'package:mahabharat/services/service_utils/url_res.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class RateAppController extends GetxController {

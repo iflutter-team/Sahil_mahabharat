@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
 import 'package:mahabharat/common_file/home_screen_common/listTile_divider_common.dart';
 import 'package:mahabharat/screen/setting_screen/setting_screen_button.dart';
+import 'package:mahabharat/screen/setting_screen/setting_screen_controller.dart';
 import 'package:mahabharat/utils/asset_res.dart';
 import 'package:mahabharat/utils/color_res.dart';
 import 'package:mahabharat/utils/icon_res.dart';
 import 'package:mahabharat/utils/string_res.dart';
-
-import 'setting_screen_controller.dart';
 
 AppBar settingAppBar = AppBar(
   backgroundColor: ColorRes.redColor.shade700,
   leading: GetBuilder<SettingScreenController>(
     builder: (controller) {
       return IconButton(
-          onPressed: () => controller.backToDrawer(),
-          icon: const Icon(IconRes.menuIcon));
+        onPressed: () => controller.handleMenuButtonPressed(),
+        icon: ValueListenableBuilder<AdvancedDrawerValue>(
+          valueListenable: controller.advancedDrawerController,
+          builder: (_, value, __) {
+            return AnimatedSwitcher(
+              duration: const Duration(milliseconds: 250),
+              child: Icon(
+                value.visible ? IconRes.clearIcon : IconRes.menuIcon,
+                key: ValueKey<bool>(value.visible),
+              ),
+            );
+          },
+        ),
+      );
     },
   ),
   title: const Text(StringRes.settingText),
@@ -53,7 +65,7 @@ Widget settingBody() {
                       ],
                     ),
                     const Spacer(),
-                    music()
+                    musicOnOff()
                   ],
                 ),
                 verticalSize(40),

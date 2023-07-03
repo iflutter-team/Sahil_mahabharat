@@ -4,9 +4,9 @@ import 'package:mahabharat/screen/character_screen/character_screen.dart';
 import 'package:mahabharat/screen/setting_screen/setting_screen.dart';
 import 'package:mahabharat/screen/video_screen/video_screen.dart';
 import 'package:mahabharat/services/audio_service/audio_controller_screen.dart';
-import 'package:mahabharat/services/firebase_service/firebase_res.dart';
 import 'package:mahabharat/services/firebase_service/firebase_service.dart';
-import 'package:mahabharat/services/url_res.dart';
+import 'package:mahabharat/services/service_utils/firebase_res.dart';
+import 'package:mahabharat/services/service_utils/url_res.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../json_model/video_model.dart';
@@ -35,13 +35,11 @@ class HomeScreenController extends GetxController {
   }
 
   ///---------------------------------watch Video-------------------------------------///
-  void watchVideo(int index) {
+  void watchVideo(int index, int indexTitle) {
     String url = userVideo![index].videourl!;
     print("url video========================================>$url");
     Get.to(
-      () => VideoScreen(
-        data: url,
-      ),
+      () => VideoScreen(data: url, index: indexTitle),
     );
     audioController.bgSong.stop();
     update(["listView"]);
@@ -55,7 +53,7 @@ class HomeScreenController extends GetxController {
 
   ///---------------------------------Tap Setting--------------------------------///
   void goToSettingPage() {
-    Get.to(() => const SettingScreen());
+    Get.to(() => SettingScreen());
   }
 
   ///------------------------------------video-----------------------------///

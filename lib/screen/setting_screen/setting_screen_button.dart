@@ -41,7 +41,7 @@ Widget rateAppSetting() {
   );
 }
 
-Widget music() {
+Widget musicOnOff() {
   return GetBuilder<SettingScreenController>(
     id: "box",
     builder: (controller) {

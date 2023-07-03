@@ -81,7 +81,7 @@ Widget homeScreenBody() {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          controller.watchVideo(index);
+                          controller.watchVideo(index, index);
                         },
                         child: Card(
                           margin: EdgeInsets.only(

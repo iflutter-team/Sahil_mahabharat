@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mahabharat/common_file/home_screen_common/drawer_button_common.dart';
 import 'package:mahabharat/common_file/home_screen_common/listTile_divider_common.dart';
-import 'package:mahabharat/services/version_res.dart';
 import 'package:mahabharat/utils/color_res.dart';
-import 'package:mahabharat/utils/icon_res.dart';
 import 'package:mahabharat/utils/string_res.dart';
 
 Widget drawerHomePage() {
@@ -36,8 +34,8 @@ Widget drawerHomePage() {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               videoButton(),
-              dividerCommon(),
-              listTileCommon(IconRes.storyIcon, StringRes.storyText),
+              // dividerCommon(),
+              // listTileCommon(IconRes.storyIcon, StringRes.storyText),
               dividerCommon(),
               characterButton(),
               dividerCommon(),
@@ -49,13 +47,6 @@ Widget drawerHomePage() {
               dividerCommon(),
               moreApp(),
               dividerCommon(),
-              const Padding(
-                padding: EdgeInsets.only(right: 10),
-                child: Text(
-                  VersionRes.version,
-                  style: TextStyle(color: ColorRes.greyColor),
-                ),
-              )
             ],
           ),
         ),
