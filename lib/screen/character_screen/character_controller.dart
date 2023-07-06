@@ -5,6 +5,9 @@ class CharacterController extends GetxController {
   final advancedDrawerController = AdvancedDrawerController();
   void handleMenuButtonPressed() {
     advancedDrawerController.showDrawer();
-    update(["character"]);
+  }
+
+  void backToDrawer() {
+    Get.back();
   }
 }

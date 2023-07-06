@@ -6,9 +6,6 @@ class SettingScreenController extends GetxController {
   AudioController audioController = Get.find<AudioController>();
   final advancedDrawerController = AdvancedDrawerController();
   bool offMusic = false;
-  void backToDrawer() {
-    Get.back();
-  }
 
   @override
   void onInit() {

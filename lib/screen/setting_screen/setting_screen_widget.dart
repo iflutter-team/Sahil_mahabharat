@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:get/get.dart';
 import 'package:mahabharat/common_file/home_screen_common/listTile_divider_common.dart';
+import 'package:mahabharat/common_file/setting_common/row_common.dart';
 import 'package:mahabharat/screen/setting_screen/setting_screen_button.dart';
 import 'package:mahabharat/screen/setting_screen/setting_screen_controller.dart';
 import 'package:mahabharat/utils/asset_res.dart';
@@ -49,12 +50,14 @@ Widget settingBody() {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+            padding: EdgeInsets.symmetric(
+                vertical: Get.height * 0.020, horizontal: Get.width * 0.020),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                textWidgetTitleCommon(StringRes.applicationText, 15),
-                verticalSize(20),
+                textWidgetTitleCommon(
+                    StringRes.applicationText, Get.width * 0.050),
+                verticalSize(Get.height * 0.025),
                 Row(
                   children: [
                     Column(
@@ -68,30 +71,31 @@ Widget settingBody() {
                     musicOnOff()
                   ],
                 ),
-                verticalSize(40),
+                verticalSize(Get.height * 0.040),
                 resetSetting(),
                 textWidgetSubTitleCommon(StringRes.resetAll),
-                verticalSize(10)
+                verticalSize(Get.height * 0.010)
               ],
             ),
           ),
           const Divider(color: Colors.grey, thickness: 0.5),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+            padding: EdgeInsets.symmetric(horizontal: Get.width * 0.020),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                textWidgetTitleCommon(StringRes.otherText, 15),
-                verticalSize(25),
+                verticalSize(Get.height * 0.010),
+                textWidgetTitleCommon(StringRes.otherText, Get.width * 0.050),
+                verticalSize(Get.height * 0.025),
                 shareSetting(),
                 textWidgetSubTitleCommon(StringRes.sendThis),
-                verticalSize(25),
+                verticalSize(Get.height * 0.025),
                 rateAppSetting(),
                 textWidgetSubTitleCommon(StringRes.rateSub),
-                verticalSize(25),
+                verticalSize(Get.height * 0.025),
                 textWidgetTitleCommon(StringRes.moreApp),
                 textWidgetSubTitleCommon(StringRes.moreSub),
-                verticalSize(25),
+                verticalSize(Get.height * 0.025),
                 textWidgetTitleCommon(StringRes.suggestions),
                 textWidgetSubTitleCommon(StringRes.suggestionsSub)
               ],

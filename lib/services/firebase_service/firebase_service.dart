@@ -11,18 +11,15 @@ class FireBaseService {
     await reference.get().then(
       (value) {
         Map data = value.value as Map;
-        print(data);
         data.forEach((key, value) {
           int id = int.parse(key.toString().substring(2));
           value["id"] = id;
           UserVideo vid = UserVideo.fromJson(value);
           userVideo.add(vid);
         });
-        print(userVideo.first.id);
         userVideo.sort(
           (a, b) => a.id.compareTo(b.id),
         );
-        print(userVideo.first.id);
       },
     );
     if (userVideo.isNotEmpty) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mahabharat/common_file/home_screen_common/listTile_divider_common.dart';
+import 'package:mahabharat/common_file/setting_common/row_common.dart';
 import 'package:mahabharat/screen/home_screen/home_screen_controller.dart';
 import 'package:mahabharat/screen/setting_screen/setting_screen_controller.dart';
 import 'package:mahabharat/services/rate_app_service/rate_app.dart';

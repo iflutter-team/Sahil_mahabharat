@@ -6,8 +6,11 @@ import 'package:mahabharat/screen/splash_screen/splash_screen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const GetMaterialApp(
+  runApp(GetMaterialApp(
+    builder: (context, child) => MediaQuery(
+        data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+        child: child!),
     debugShowCheckedModeBanner: false,
-    home: SplashScreen(),
+    home: const SplashScreen(),
   ));
 }

@@ -1,55 +1,51 @@
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:get/get.dart';
-import 'package:mahabharat/screen/home_screen/home_screen_controller.dart';
 import 'package:mahabharat/services/audio_service/audio_controller_screen.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoController extends GetxController {
-  HomeScreenController homeController = Get.find<HomeScreenController>();
   AudioController audioController = Get.find<AudioController>();
-  String? index;
+  String? videoUrl;
   int? indexTitle;
   bool inLoading = false;
-  VideoController(this.index, this.indexTitle);
-  late FlickManager flickManager;
+  VideoController(this.videoUrl, this.indexTitle);
+  FlickManager? flickManager;
 
+  ///----------------------------------------------onInit--------------------------------------------------------------///
   @override
   void onInit() {
     super.onInit();
-    flickManager = FlickManager(
-      autoPlay: true,
-      autoInitialize: true,
-      videoPlayerController: VideoPlayerController.network(index!),
-    );
-    inLoading = true;
-    print("index ======================================>$index");
-    update(["video"]);
-    inLoading = false;
+    onPlay(videoUrl ?? "");
+    audioController.bgSong.stop();
   }
 
+  ///---------------------------------------------dispose--------------------------------------------///
   @override
   void dispose() {
+    flickManager!.dispose();
     super.dispose();
-    flickManager.dispose();
-    audioController.bgMusic();
-    index = null;
   }
 
-  @override
-  void onClose() {
-    super.onClose();
-    flickManager.dispose();
-    index = null;
-    print("===============================>>>> Dispose");
-  }
-
-  void playListVideo() {
+  void onPlay(String index) {
+    inLoading = true;
+    update(["videoScreen"]);
     flickManager = FlickManager(
       autoPlay: true,
       autoInitialize: true,
-      videoPlayerController: VideoPlayerController.network(index!),
+      videoPlayerController: VideoPlayerController.networkUrl(Uri.parse(index)),
     );
+    print("index ======================================>$index");
+    inLoading = false;
     update(["videoScreen"]);
+  }
+
+  void onTapVideo(String videosUrl, int index) {
+    indexTitle = index;
+    flickManager!.handleChangeVideo(
+      videoChangeDuration: const Duration(microseconds: 100),
+      VideoPlayerController.networkUrl(Uri.parse(videosUrl)),
+    );
+    update(["video_player"]);
   }
 
   Future<bool> onTapBack() async {

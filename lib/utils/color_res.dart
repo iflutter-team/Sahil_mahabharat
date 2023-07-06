@@ -12,4 +12,5 @@ class ColorRes {
   static const transparentColor = Colors.transparent;
   static const black54Color = Colors.black54;
   static const greyColor = Colors.grey;
+  static const white70Color = Colors.white70;
 }

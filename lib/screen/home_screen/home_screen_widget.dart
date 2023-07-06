@@ -10,8 +10,9 @@ import 'package:mahabharat/utils/color_res.dart';
 import 'package:mahabharat/utils/icon_res.dart';
 import 'package:mahabharat/utils/string_res.dart';
 
-///-----------------------------------------------AppBar-----------------------------------///
+///-----------------------------------------------Home Screen AppBar-----------------------------------///
 AppBar homeScreenAppBar = AppBar(
+  bottom: const PreferredSize(preferredSize: Size(0, 8), child: SizedBox()),
   leading: GetBuilder<HomeScreenController>(
     builder: (controller) {
       return IconButton(
@@ -24,6 +25,7 @@ AppBar homeScreenAppBar = AppBar(
               child: Icon(
                 value.visible ? IconRes.clearIcon : IconRes.menuIcon,
                 key: ValueKey<bool>(value.visible),
+                size: Get.height * 0.035,
               ),
             );
           },
@@ -33,16 +35,19 @@ AppBar homeScreenAppBar = AppBar(
   ),
   centerTitle: true,
   backgroundColor: ColorRes.redColor.shade700,
-  title: BorderedText(
-    strokeWidth: 2,
-    strokeColor: ColorRes.orangeAssentColor,
-    child: Text(
-      StringRes.mahabharatText,
-      style: TextStyle(
-          fontSize: Get.height * 0.040,
-          color: ColorRes.whiteColor,
-          fontStyle: FontStyle.italic,
-          shadows: const [Shadow(color: ColorRes.blackColor, blurRadius: 6)]),
+  title: Padding(
+    padding: EdgeInsets.only(top: Get.height * 0.010),
+    child: BorderedText(
+      strokeWidth: 2,
+      strokeColor: ColorRes.orangeAssentColor,
+      child: Text(
+        StringRes.mahabharatText,
+        style: TextStyle(
+            fontSize: Get.height * 0.050,
+            color: ColorRes.whiteColor,
+            fontStyle: FontStyle.italic,
+            shadows: const [Shadow(color: ColorRes.blackColor, blurRadius: 6)]),
+      ),
     ),
   ),
   actions: [
@@ -67,7 +72,7 @@ Widget homeScreenBody() {
           image: DecorationImage(
               image: AssetImage(AssetRes.bgImage), fit: BoxFit.cover)),
       child: Container(
-        color: ColorRes.transparentColor.withOpacity(0.5),
+        color: ColorRes.transparentColor.withOpacity(0.4),
         child: GetBuilder<HomeScreenController>(
           id: "listView",
           builder: (controller) {
@@ -75,6 +80,8 @@ Widget homeScreenBody() {
                 ? const Center(
                     child:
                         CircularProgressIndicator(color: ColorRes.whiteColor))
+
+                ///-----------------------------------------------------ListView--------------------------------------------------------///
                 : ListView.builder(
                     physics: const BouncingScrollPhysics(),
                     itemCount: controller.userVideo!.length,
@@ -83,21 +90,23 @@ Widget homeScreenBody() {
                         onTap: () {
                           controller.watchVideo(index, index);
                         },
+
+                        ///----------------------------------------------------Card------------------------------------------------///
                         child: Card(
                           margin: EdgeInsets.only(
                               top: Get.height * 0.015,
                               left: Get.width * 0.030,
                               right: Get.width * 0.030),
                           shape: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.white70),
+                            borderSide:
+                                const BorderSide(color: ColorRes.white70Color),
                             borderRadius: BorderRadius.all(
                               Radius.circular(Get.height * 0.015),
                             ),
                           ),
-                          elevation: 20,
-                          color: ColorRes.transparentColor.withOpacity(0.1),
+                          elevation: Get.height * 0.020,
+                          color: ColorRes.transparentColor.withOpacity(0.3),
                           child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               ///----------------------------------------------------------thumlain----------------------------------------------------------------///
                               CachedNetworkImage(
@@ -126,28 +135,26 @@ Widget homeScreenBody() {
                               ),
 
                               ///-----------------------------------------------------title-------------------------------------------------------------------------///
-                              Expanded(
-                                child: Container(
-                                  height: Get.height * 0.16,
-                                  decoration: BoxDecoration(
-                                      color: ColorRes.black54Color,
-                                      borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(
-                                              Get.height * 0.015),
-                                          bottomRight: Radius.circular(
-                                              Get.height * 0.015))),
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        left: Get.width * 0.02,
-                                        top: Get.height * 0.0075,
-                                        right: Get.width * 0.009),
-                                    child: Text(
-                                      controller.userVideo![index].title!,
-                                      style: TextStyle(
-                                          color: ColorRes.whiteColor,
-                                          fontSize: Get.height * 0.021,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                              Container(
+                                height: Get.height * 0.16,
+                                width: Get.width * 0.45,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        topRight:
+                                            Radius.circular(Get.height * 0.015),
+                                        bottomRight: Radius.circular(
+                                            Get.height * 0.015))),
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: Get.width * 0.02,
+                                      top: Get.height * 0.0075,
+                                      right: Get.width * 0.009),
+                                  child: Text(
+                                    controller.userVideo![index].title!,
+                                    style: TextStyle(
+                                        color: ColorRes.whiteColor,
+                                        fontSize: Get.height * 0.021,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               )
