@@ -109,52 +109,61 @@ Widget homeScreenBody() {
                           child: Row(
                             children: [
                               ///----------------------------------------------------------thumlain----------------------------------------------------------------///
-                              CachedNetworkImage(
-                                imageUrl:
-                                    controller.userVideo![index].imageurl!,
-                                imageBuilder: (context, imageProvider) =>
-                                    Container(
-                                  height: Get.height * 0.16,
-                                  width: Get.width * 0.48,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft:
-                                          Radius.circular(Get.height * 0.015),
-                                      topLeft:
-                                          Radius.circular(Get.height * 0.015),
+                              Expanded(
+                                child: CachedNetworkImage(
+                                  imageUrl:
+                                      controller.userVideo![index].imageurl!,
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                    // height: Get.height * 0.16,
+                                    // width: Get.width * 0.48,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft:
+                                            Radius.circular(Get.height * 0.015),
+                                        topLeft:
+                                            Radius.circular(Get.height * 0.015),
+                                      ),
+                                      image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.fill),
                                     ),
-                                    image: DecorationImage(
-                                        image: imageProvider, fit: BoxFit.fill),
                                   ),
+                                  placeholder: (context, url) => Center(
+                                    child: SizedBox(
+                                      height: Get.height * 0.040,
+                                      child: const CircularProgressIndicator(
+                                          color: ColorRes.whiteColor),
+                                    ),
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Icons.error),
                                 ),
-                                placeholder: (context, url) => const Center(
-                                    child: CircularProgressIndicator(
-                                        color: ColorRes.whiteColor)),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
                               ),
 
                               ///-----------------------------------------------------title-------------------------------------------------------------------------///
-                              Container(
-                                height: Get.height * 0.16,
-                                width: Get.width * 0.45,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        topRight:
-                                            Radius.circular(Get.height * 0.015),
-                                        bottomRight: Radius.circular(
-                                            Get.height * 0.015))),
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                      left: Get.width * 0.02,
-                                      top: Get.height * 0.0075,
-                                      right: Get.width * 0.009),
-                                  child: Text(
-                                    controller.userVideo![index].title!,
-                                    style: TextStyle(
-                                        color: ColorRes.whiteColor,
-                                        fontSize: Get.height * 0.021,
-                                        fontWeight: FontWeight.bold),
+                              Expanded(
+                                child: Container(
+                                  // height: Get.height * 0.16,
+                                  // width: Get.width * 0.45,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(
+                                              Get.height * 0.015),
+                                          bottomRight: Radius.circular(
+                                              Get.height * 0.015))),
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        left: Get.width * 0.02,
+                                        top: Get.height * 0.0075,
+                                        right: Get.width * 0.009),
+                                    child: Text(
+                                      controller.userVideo![index].title!,
+                                      style: TextStyle(
+                                          color: ColorRes.whiteColor,
+                                          fontSize: Get.height * 0.021,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
                                 ),
                               )

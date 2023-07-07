@@ -14,9 +14,9 @@ class VideoController extends GetxController {
   ///----------------------------------------------onInit--------------------------------------------------------------///
   @override
   void onInit() {
-    super.onInit();
-    onPlay(videoUrl ?? "");
     audioController.bgSong.stop();
+    onPlay(videoUrl ?? "");
+    super.onInit();
   }
 
   ///---------------------------------------------dispose--------------------------------------------///
@@ -26,6 +26,7 @@ class VideoController extends GetxController {
     super.dispose();
   }
 
+  ///------------------------------------------------------Home Screen Video Play-----------------------------------///
   void onPlay(String index) {
     inLoading = true;
     update(["videoScreen"]);
@@ -39,17 +40,14 @@ class VideoController extends GetxController {
     update(["videoScreen"]);
   }
 
+  ///--------------------------------------------------------------Play List Video---------------------------------///
   void onTapVideo(String videosUrl, int index) {
+    flickManager!.dispose();
     indexTitle = index;
     flickManager!.handleChangeVideo(
       videoChangeDuration: const Duration(microseconds: 100),
       VideoPlayerController.networkUrl(Uri.parse(videosUrl)),
     );
     update(["video_player"]);
-  }
-
-  Future<bool> onTapBack() async {
-    Get.back();
-    return false;
   }
 }

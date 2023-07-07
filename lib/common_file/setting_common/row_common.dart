@@ -12,5 +12,8 @@ Widget textWidgetTitleCommon(String text, [double size = 18]) {
 }
 
 Widget textWidgetSubTitleCommon(String text) {
-  return Text(text, style: const TextStyle(color: ColorRes.orangeColor));
+  return Text(
+    text,
+    style: const TextStyle(color: ColorRes.orangeColor),
+  );
 }

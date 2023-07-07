@@ -25,8 +25,25 @@ Widget videoScreenBody() {
                   ///----------------------------------------------------play video-----------------------------------------------///
                   GetBuilder<VideoController>(
                     id: "video_player",
-                    builder: (controller) => FlickVideoPlayer(
-                      flickManager: controller.flickManager!,
+                    builder: (controller) => Expanded(
+                      flex: 3,
+                      child: FlickVideoPlayer(
+                        flickVideoWithControls: FlickVideoWithControls(
+                          textStyle:
+                              const TextStyle(fontWeight: FontWeight.bold),
+                          controls: FlickPortraitControls(
+                            iconSize: 25,
+                            progressBarSettings: FlickProgressBarSettings(
+                              height: 2,
+                              playedColor: ColorRes.redColor,
+                              handleColor: ColorRes.redColor,
+                              handleRadius: 6,
+                            ),
+                          ),
+                          videoFit: BoxFit.cover,
+                        ),
+                        flickManager: controller.flickManager!,
+                      ),
                     ),
                   ),
 
@@ -53,6 +70,7 @@ Widget videoScreenBody() {
                   GetBuilder<HomeScreenController>(
                     builder: (controllerHome) {
                       return Expanded(
+                        flex: 5,
                         child: Container(
                             color: ColorRes.transparentColor.withOpacity(0.6),
                             child: ListView.builder(
@@ -109,11 +127,8 @@ Widget videoScreenBody() {
                                             ),
                                           ),
                                           placeholder: (context, url) =>
-                                              const Center(
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                          color: ColorRes
-                                                              .whiteColor)),
+                                              const CircularProgressIndicator(
+                                                  color: ColorRes.whiteColor),
                                           errorWidget: (context, url, error) =>
                                               const Icon(Icons.error),
                                         ),
@@ -123,7 +138,6 @@ Widget videoScreenBody() {
                                           child: Container(
                                             height: Get.height * 0.16,
                                             decoration: BoxDecoration(
-                                                color: ColorRes.black54Color,
                                                 borderRadius: BorderRadius.only(
                                                     topRight: Radius.circular(
                                                         Get.height * 0.015),

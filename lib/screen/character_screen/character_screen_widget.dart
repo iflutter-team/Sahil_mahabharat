@@ -8,10 +8,18 @@ import 'package:mahabharat/utils/color_res.dart';
 import 'package:mahabharat/utils/icon_res.dart';
 import 'package:mahabharat/utils/string_res.dart';
 
+///-------------------------------------------------Character Screen AppBar---------------------------------------------///
 AppBar characterScreenAppBar = AppBar(
+  bottom: const PreferredSize(preferredSize: Size(0, 8), child: SizedBox()),
   centerTitle: true,
   backgroundColor: ColorRes.redColor.shade700,
-  title: const Text(StringRes.characterText),
+  title: Padding(
+    padding: EdgeInsets.only(top: Get.height * 0.010),
+    child: Text(
+      StringRes.characterText,
+      style: TextStyle(fontSize: Get.width * 0.070),
+    ),
+  ),
   leading: GetBuilder<CharacterController>(
     builder: (controller) {
       return IconButton(
@@ -24,6 +32,7 @@ AppBar characterScreenAppBar = AppBar(
               child: Icon(
                 value.visible ? IconRes.clearIcon : IconRes.menuIcon,
                 key: ValueKey<bool>(value.visible),
+                size: Get.height * 0.035,
               ),
             );
           },
@@ -33,6 +42,7 @@ AppBar characterScreenAppBar = AppBar(
   ),
 );
 
+///---------------------------------------------Character Screen Body-----------------------------------------------------///
 Widget characterScreenBody() {
   return Container(
     decoration: const BoxDecoration(
@@ -40,6 +50,8 @@ Widget characterScreenBody() {
             image: AssetImage(AssetRes.bgImage), fit: BoxFit.fill)),
     child: Padding(
       padding: EdgeInsets.symmetric(horizontal: Get.width * 0.050),
+
+      ///---------------------------------------ListView------------------------------///
       child: ListView.builder(
         itemCount: CharacterRes.character.length,
         itemBuilder: (context, index) {
@@ -52,7 +64,7 @@ Widget characterScreenBody() {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ///-------------------------------------orange----------------------------------------------///
+                ///-------------------------------------sort character ----------------------------------------------///
                 Container(
                   width: Get.width * 0.9,
                   height: Get.height * 0.050,
@@ -64,12 +76,13 @@ Widget characterScreenBody() {
                   child: Center(
                       child: Text(
                     CharacterRes.char[index],
-                    style: const TextStyle(
-                        fontSize: 22, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: Get.width * 0.070,
+                        fontWeight: FontWeight.bold),
                   )),
                 ),
 
-                ///--------------------------------------------last----------------------------------------------///
+                ///--------------------------------------------Character Details----------------------------------------------///
                 SizedBox(
                   height: Get.height * 0.25,
                   width: Get.width * 0.7,

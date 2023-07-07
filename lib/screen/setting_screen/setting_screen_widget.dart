@@ -10,7 +10,9 @@ import 'package:mahabharat/utils/color_res.dart';
 import 'package:mahabharat/utils/icon_res.dart';
 import 'package:mahabharat/utils/string_res.dart';
 
+///-----------------------------------Setting Screen AppBar---------------------------------------------------///
 AppBar settingAppBar = AppBar(
+  bottom: const PreferredSize(preferredSize: Size(0, 8), child: SizedBox()),
   backgroundColor: ColorRes.redColor.shade700,
   leading: GetBuilder<SettingScreenController>(
     builder: (controller) {
@@ -24,6 +26,7 @@ AppBar settingAppBar = AppBar(
               child: Icon(
                 value.visible ? IconRes.clearIcon : IconRes.menuIcon,
                 key: ValueKey<bool>(value.visible),
+                size: Get.height * 0.035,
               ),
             );
           },
@@ -31,7 +34,13 @@ AppBar settingAppBar = AppBar(
       );
     },
   ),
-  title: const Text(StringRes.settingText),
+  title: Padding(
+    padding: EdgeInsets.only(top: Get.height * 0.010),
+    child: Text(
+      StringRes.settingText,
+      style: TextStyle(fontSize: Get.width * 0.070),
+    ),
+  ),
   centerTitle: true,
 );
 
@@ -46,62 +55,59 @@ Widget settingBody() {
       height: Get.height,
       width: Get.width,
       color: ColorRes.transparentColor.withOpacity(0.45),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(
-                vertical: Get.height * 0.020, horizontal: Get.width * 0.020),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                textWidgetTitleCommon(
-                    StringRes.applicationText, Get.width * 0.050),
-                verticalSize(Get.height * 0.025),
-                Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        textWidgetTitleCommon(StringRes.playSong),
-                        textWidgetSubTitleCommon(StringRes.playSubTitle)
-                      ],
-                    ),
-                    const Spacer(),
-                    musicOnOff()
-                  ],
-                ),
-                verticalSize(Get.height * 0.040),
-                resetSetting(),
-                textWidgetSubTitleCommon(StringRes.resetAll),
-                verticalSize(Get.height * 0.010)
-              ],
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  vertical: Get.height * 0.020, horizontal: Get.width * 0.030),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  textWidgetTitleCommon(
+                      StringRes.applicationText, Get.width * 0.050),
+                  verticalSize(Get.height * 0.025),
+                  Row(
+                    children: [
+                      textWidgetTitleCommon(StringRes.playSong),
+                      const Spacer(),
+                      musicOnOff(),
+                    ],
+                  ),
+                  textWidgetSubTitleCommon(StringRes.playSubTitle),
+                  verticalSize(Get.height * 0.040),
+                  resetSetting(),
+                  textWidgetSubTitleCommon(StringRes.resetAll),
+                  verticalSize(Get.height * 0.010)
+                ],
+              ),
             ),
-          ),
-          const Divider(color: Colors.grey, thickness: 0.5),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: Get.width * 0.020),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                verticalSize(Get.height * 0.010),
-                textWidgetTitleCommon(StringRes.otherText, Get.width * 0.050),
-                verticalSize(Get.height * 0.025),
-                shareSetting(),
-                textWidgetSubTitleCommon(StringRes.sendThis),
-                verticalSize(Get.height * 0.025),
-                rateAppSetting(),
-                textWidgetSubTitleCommon(StringRes.rateSub),
-                verticalSize(Get.height * 0.025),
-                textWidgetTitleCommon(StringRes.moreApp),
-                textWidgetSubTitleCommon(StringRes.moreSub),
-                verticalSize(Get.height * 0.025),
-                textWidgetTitleCommon(StringRes.suggestions),
-                textWidgetSubTitleCommon(StringRes.suggestionsSub)
-              ],
-            ),
-          )
-        ],
+            const Divider(color: Colors.grey, thickness: 0.5),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: Get.width * 0.030),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  verticalSize(Get.height * 0.010),
+                  textWidgetTitleCommon(StringRes.otherText, Get.width * 0.050),
+                  verticalSize(Get.height * 0.025),
+                  shareSetting(),
+                  textWidgetSubTitleCommon(StringRes.sendThis),
+                  verticalSize(Get.height * 0.025),
+                  rateAppSetting(),
+                  textWidgetSubTitleCommon(StringRes.rateSub),
+                  verticalSize(Get.height * 0.025),
+                  textWidgetTitleCommon(StringRes.moreApp),
+                  textWidgetSubTitleCommon(StringRes.moreSub),
+                  verticalSize(Get.height * 0.025),
+                  textWidgetTitleCommon(StringRes.suggestions),
+                  textWidgetSubTitleCommon(StringRes.suggestionsSub)
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     ),
   );
