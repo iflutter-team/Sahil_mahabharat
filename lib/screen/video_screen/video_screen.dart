@@ -11,14 +11,17 @@ class VideoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(VideoController(data, index));
-    return WillPopScope(
-      onWillPop: () async {
-        Get.back();
-        return false;
-      },
-      child: SafeArea(
-        child: Scaffold(body: videoScreenBody()),
-      ),
-    );
+    return GetBuilder<VideoController>(builder: (controller) {
+      return WillPopScope(
+        onWillPop: () async {
+          controller.flickManager!.dispose();
+          Get.back();
+          return true;
+        },
+        child: SafeArea(
+          child: Scaffold(body: videoScreenBody()),
+        ),
+      );
+    });
   }
 }

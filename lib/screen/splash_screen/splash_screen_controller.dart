@@ -25,8 +25,8 @@ class SplashScreenController extends GetxController
     tween;
     await audioController.titleMusic();
     Timer(const Duration(seconds: 6), () {
-      Get.off(() => const HomeScreen());
       audioController.titleSong.stop();
+      Get.off(() => const HomeScreen());
     });
     super.onInit();
   }

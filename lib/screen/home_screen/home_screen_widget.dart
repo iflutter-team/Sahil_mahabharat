@@ -65,9 +65,11 @@ AppBar homeScreenAppBar = AppBar(
 
 ///-------------------------------------------Home Screen Body Part----------------------------------------///
 Widget homeScreenBody() {
+  double height = Get.height;
+  double width = Get.width;
   return Container(
-      height: Get.height,
-      width: Get.width,
+      height: height,
+      width: width,
       decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(AssetRes.bgImage), fit: BoxFit.cover)),
@@ -94,35 +96,36 @@ Widget homeScreenBody() {
                         ///----------------------------------------------------Card------------------------------------------------///
                         child: Card(
                           margin: EdgeInsets.only(
-                              top: Get.height * 0.015,
-                              left: Get.width * 0.030,
-                              right: Get.width * 0.030),
+                              top: height * 0.015,
+                              left: width * 0.030,
+                              right: width * 0.030),
                           shape: OutlineInputBorder(
                             borderSide:
                                 const BorderSide(color: ColorRes.white70Color),
                             borderRadius: BorderRadius.all(
-                              Radius.circular(Get.height * 0.015),
+                              Radius.circular(height * 0.015),
                             ),
                           ),
-                          elevation: Get.height * 0.020,
+                          elevation: height * 0.020,
                           color: ColorRes.transparentColor.withOpacity(0.3),
                           child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               ///----------------------------------------------------------thumlain----------------------------------------------------------------///
-                              Expanded(
+                              SizedBox(
+                                height: height * 0.16,
+                                width: width * 0.48,
                                 child: CachedNetworkImage(
                                   imageUrl:
                                       controller.userVideo![index].imageurl!,
                                   imageBuilder: (context, imageProvider) =>
                                       Container(
-                                    // height: Get.height * 0.16,
-                                    // width: Get.width * 0.48,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.only(
                                         bottomLeft:
-                                            Radius.circular(Get.height * 0.015),
+                                            Radius.circular(height * 0.015),
                                         topLeft:
-                                            Radius.circular(Get.height * 0.015),
+                                            Radius.circular(height * 0.015),
                                       ),
                                       image: DecorationImage(
                                           image: imageProvider,
@@ -131,37 +134,37 @@ Widget homeScreenBody() {
                                   ),
                                   placeholder: (context, url) => Center(
                                     child: SizedBox(
-                                      height: Get.height * 0.040,
+                                      height: height * 0.040,
                                       child: const CircularProgressIndicator(
                                           color: ColorRes.whiteColor),
                                     ),
                                   ),
                                   errorWidget: (context, url, error) =>
-                                      const Icon(Icons.error),
+                                      const Icon(IconRes.errorIcon),
                                 ),
                               ),
 
                               ///-----------------------------------------------------title-------------------------------------------------------------------------///
                               Expanded(
                                 child: Container(
-                                  // height: Get.height * 0.16,
-                                  // width: Get.width * 0.45,
+                                  // height: height * 0.16,
+                                  // width: width * 0.45,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(
-                                              Get.height * 0.015),
-                                          bottomRight: Radius.circular(
-                                              Get.height * 0.015))),
+                                          topRight:
+                                              Radius.circular(height * 0.015),
+                                          bottomRight:
+                                              Radius.circular(height * 0.015))),
                                   child: Padding(
                                     padding: EdgeInsets.only(
-                                        left: Get.width * 0.02,
-                                        top: Get.height * 0.0075,
-                                        right: Get.width * 0.009),
+                                        left: width * 0.02,
+                                        top: height * 0.0075,
+                                        right: width * 0.009),
                                     child: Text(
                                       controller.userVideo![index].title!,
                                       style: TextStyle(
                                           color: ColorRes.whiteColor,
-                                          fontSize: Get.height * 0.021,
+                                          fontSize: height * 0.021,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),

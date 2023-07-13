@@ -19,12 +19,18 @@ class VideoController extends GetxController {
     super.onInit();
   }
 
-  ///---------------------------------------------dispose--------------------------------------------///
   @override
-  void dispose() {
-    flickManager!.dispose();
-    super.dispose();
+  void onClose() {
+    audioController.bgSong.stop();
+    super.onClose();
   }
+
+  // ///---------------------------------------------dispose--------------------------------------------///
+  // @override
+  // void dispose() {
+  //   WidgetsBinding.instance.addObserver(this as WidgetsBindingObserver);
+  //   super.dispose();
+  // }
 
   ///------------------------------------------------------Home Screen Video Play-----------------------------------///
   void onPlay(String index) {
@@ -41,8 +47,7 @@ class VideoController extends GetxController {
   }
 
   ///--------------------------------------------------------------Play List Video---------------------------------///
-  void onTapVideo(String videosUrl, int index) {
-    flickManager!.dispose();
+  void onTapVideoPlayList(String videosUrl, int index) {
     indexTitle = index;
     flickManager!.handleChangeVideo(
       videoChangeDuration: const Duration(microseconds: 100),

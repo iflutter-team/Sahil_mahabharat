@@ -3,7 +3,6 @@ import 'package:just_audio/just_audio.dart';
 import 'package:mahabharat/services/service_utils/audio_res.dart';
 
 class AudioController extends GetxController {
-
   final titleSong = AudioPlayer();
   final bgSong = AudioPlayer();
   Future<void> titleMusic() async {

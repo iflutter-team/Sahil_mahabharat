@@ -32,6 +32,13 @@ class HomeScreenController extends GetxController {
     super.dispose();
   }
 
+  @override
+  void onClose() {
+    audioController.bgSong.stop();
+    audioController.bgSong.dispose();
+    super.onClose();
+  }
+
   ///---------------------------------------------get data(Firebase)-----------------------------------------------///
   Future<void> getAllVideo() async {
     userVideo = await FireBaseService.getVideo(FirebaseRes.videoData);

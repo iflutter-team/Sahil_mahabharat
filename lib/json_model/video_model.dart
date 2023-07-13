@@ -2,7 +2,6 @@ import 'dart:convert';
 
 UserVideo userVideoFromJson(String str) => UserVideo.fromJson(json.decode(str));
 
-// String userVideoToJson(UserVideo data) => json.encode(data.toJson());
 
 class UserVideo {
   int id;
